@@ -46,44 +46,44 @@ int main() {
 
     setlocale(LC_ALL, "Russian");
 
-    cout << "Ââåäèòå øèðèíó ïðÿìîóãîëüíèêà: ";
+    cout << "Ã‚Ã¢ÄºÃ¤ÄÅˆÄº Å™ÄÄ‘ÄÃ­Ã³ ÄÄ‘Ë™Ä›Ã®Ã³ÄƒÃ®Ã«Ã¼Ã­ÄÄ™Å•: ";
     cin >> width;
 
-    cout << "Ââåäèòå âûñîòó ïðÿìîóãîëüíèêà: ";
+    cout << "Ã‚Ã¢ÄºÃ¤ÄÅˆÄº Ã¢Å±Å„Ã®ÅˆÃ³ ÄÄ‘Ë™Ä›Ã®Ã³ÄƒÃ®Ã«Ã¼Ã­ÄÄ™Å•: ";
     cin >> height;
 
     pramougolnik pramougolnik(width, height, MAX_WIDTH, MAX_HEIGHT);
 
     if (!pramougolnik.isValid()) {
-        cout << "Ðàçìåðû âûñîòû è/èëè øèðèíû íåêîððåêòíû." << endl;
+        cout << "ÄÅ•Ã§Ä›ÄºÄ‘Å± Ã¢Å±Å„Ã®ÅˆÅ± Ä/ÄÃ«Ä Å™ÄÄ‘ÄÃ­Å± Ã­ÄºÄ™Ã®Ä‘Ä‘ÄºÄ™ÅˆÃ­Å±." << endl;
         return 0;
     }
 
-    cout << "Âûáåðèòå, ÷òî íóæíî ïîñ÷èòàòü:\n";
-    cout << "1. Ïåðèìåòð\n";
-    cout << "2. Ïëîùàäü\n";
-    cout << "3. Äèàãîíàëü\n";
-    cout << "Âàø âûáîð: ";
+    cout << "Ã‚Å±Ã¡ÄºÄ‘ÄÅˆÄº, Ã·ÅˆÃ® Ã­Ã³Ä‡Ã­Ã® ÄÃ®Å„Ã·ÄÅˆÅ•ÅˆÃ¼:\n";
+    cout << "1. ÄŽÄºÄ‘ÄÄ›ÄºÅˆÄ‘\n";
+    cout << "2. ÄŽÃ«Ã®Å¯Å•Ã¤Ã¼\n";
+    cout << "3. Ã„ÄÅ•ÄƒÃ®Ã­Å•Ã«Ã¼\n";
+    cout << "Ã‚Å•Å™ Ã¢Å±Ã¡Ã®Ä‘: ";
     cin >> choice;
 
     switch (choice) {
         case 1: {
             double perimeter = pramougolnik.getPerimeter();
-            cout << "Ïåðèìåòð ïðÿìîóãîëüíèêà: " << perimeter << endl;
+            cout << "ÄŽÄºÄ‘ÄÄ›ÄºÅˆÄ‘ ÄÄ‘Ë™Ä›Ã®Ã³ÄƒÃ®Ã«Ã¼Ã­ÄÄ™Å•: " << perimeter << endl;
             break;
         }
         case 2: {
             double ploshad = pramougolnik.getploshad();
-            cout << "Ïëîùàäü ïðÿìîóãîëüíèêà: " << ploshad << endl;
+            cout << "ÄŽÃ«Ã®Å¯Å•Ã¤Ã¼ ÄÄ‘Ë™Ä›Ã®Ã³ÄƒÃ®Ã«Ã¼Ã­ÄÄ™Å•: " << ploshad << endl;
             break;
         }
         case 3: {
             double diagonal = pramougolnik.getdiagonal();
-            cout << "Äèàãîíàëü ïðÿìîóãîëüíèêà: " << diagonal << endl;
+            cout << "Ã„ÄÅ•ÄƒÃ®Ã­Å•Ã«Ã¼ ÄÄ‘Ë™Ä›Ã®Ã³ÄƒÃ®Ã«Ã¼Ã­ÄÄ™Å•: " << diagonal << endl;
             break;
         }
         default:
-            cout << "Íåïðàâèëüíûé âûáîð." << endl;
+            cout << "ÃÄºÄÄ‘Å•Ã¢ÄÃ«Ã¼Ã­Å±Ã© Ã¢Å±Ã¡Ã®Ä‘." << endl;
     }
 
     return 0;
