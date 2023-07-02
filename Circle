@@ -1,0 +1,67 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+class circle {
+private:
+double radius;
+double maxRadius;
+public:
+circle(double r,double maxR) {
+radius = r;
+maxRadius = maxR;
+}
+double getPerimeter() {
+return 2 * M_PI * radius;
+}
+double getploshad() {
+return M_PI * radius * radius;
+}
+double getdiametr() {
+return 2 * radius;
+}
+bool isValid() {
+return (radius > 0 && radius <= maxRadius);
+}
+};
+int main() {
+const double PI = 3.141592653589793;
+double radius;
+int choice;
+const double MAX_RADIUS = 1000.0;
+setlocale(LC_ALL, "Russian");
+cout << "Введите радиус окружности: ";
+cin >> radius;
+circle  circle(radius,MAX_RADIUS);
+if (!circle.isValid()) {
+cout << "Размеры высоты и/или ширины некорректны." << endl;
+return 0;
+}
+cout << "Выберите, что нужно посчитать:\n";
+cout << "1. Периметр\n";
+cout << "2. Площадь\n";
+cout << "3. Диаметр\n";
+cout << "Ваш выбор: ";
+cin >> choice;
+switch (choice) {
+case 1: {
+double perimeter = circle.getPerimeter();
+cout << "Периметр окружности: " << perimeter << endl;
+break;
+}
+case 2: {
+double ploshad = circle.getploshad();
+cout << "Площадь окружности: " << ploshad << endl;
+break;
+}
+case 3: {
+double diametr = circle.getdiametr();
+cout << "Диаметр окружности: " << diametr << endl;
+break;
+}
+default:
+cout << "Неправильный выбор." << endl;
+}
+return 0;
+}
