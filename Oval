@@ -63,12 +63,12 @@ int main()
     switch (choice) {
     case 1: {
         double perimeter = Oval.getPerimeter();
-        cout << "Периметр прямоугольника: " << perimeter << endl;
+        cout << "Периметр овала: " << perimeter << endl;
         break;
     }
     case 2: {
         double ploshad = Oval.getPloshad();
-        cout << "Площадь прямоугольника: " << ploshad << endl;
+        cout << "Площадь овала: " << ploshad << endl;
         break;
     }
 
