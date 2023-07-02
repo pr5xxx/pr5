@@ -1,0 +1,87 @@
+echo "# pr5" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/pr5xxx/pr5.git
+git push -u origin main
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+
+class Oval {
+
+private:
+    double width;
+    double height;
+    double maxWidth;
+    double maxHeight;
+
+public:
+    Oval(double width, double height, double maxHeight, double maxWidth) : 
+        width(width), height(height), maxHeight(maxHeight), maxWidth(maxWidth) {}
+
+    double getPerimeter() {
+        return 2 * 3.14 * sqrt((width * width + height * height) / 8);
+    }
+
+    double getPloshad() {
+        return 3.14 * width * height / 4;
+    }
+    
+    bool isValid() {
+        return (width > 0 && width <= maxWidth) && (height > 0 && height <= maxHeight);
+    }
+
+
+};
+
+
+int main()
+{
+    double width, height;
+    int choice;
+    const double MAX_WIDTH = 1000.0;
+    const double MAX_HEIGHT = 1000.0;
+
+    setlocale(LC_ALL, "Russian");
+
+    cout << "Введите ширину овала: ";
+    cin >> width;
+
+    cout << "Введите высоту овала: ";
+    cin >> height;
+
+    Oval Oval(width, height, MAX_WIDTH, MAX_HEIGHT);
+
+    if (!Oval.isValid()) {
+        cout << "Размеры высоты и/или ширины некорректны." << endl;
+        return 0;
+    }
+
+    cout << "Выберите, что нужно посчитать:\n";
+    cout << "1. Периметр\n";
+    cout << "2. Площадь\n";
+    cout << "Ваш выбор: ";
+    cin >> choice;
+
+    switch (choice) {
+    case 1: {
+        double perimeter = Oval.getPerimeter();
+        cout << "Периметр прямоугольника: " << perimeter << endl;
+        break;
+    }
+    case 2: {
+        double ploshad = Oval.getPloshad();
+        cout << "Площадь прямоугольника: " << ploshad << endl;
+        break;
+    }
+
+    default:
+        cout << "Неправильный выбор." << endl;
+    }
+
+    return 0;
+}
