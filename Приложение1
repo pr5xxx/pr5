@@ -1,0 +1,139 @@
+#include <iostream>
+#include <cmath>
+#define M_PI 3.14159265358979323846
+
+using namespace std;
+
+
+class Oval {
+
+private:
+    double width;
+    double height;
+    double maxWidth;
+    double maxHeight;
+
+public:
+    Oval(double width, double height, double maxHeight, double maxWidth) :
+        width(width), height(height), maxHeight(maxHeight), maxWidth(maxWidth) {}
+
+    double getPerimeter() {
+        return 2 * 3.14 * sqrt((width * width + height * height) / 8);
+    }
+
+    double getPloshad() {
+        return 3.14 * width * height / 4;
+    }
+
+    bool isValid() {
+        return (width > 0 && width <= maxWidth) && (height > 0 && height <= maxHeight);
+    }
+
+
+};
+class parallelogram {
+private:
+    double base;
+    double side;
+    double angle;
+    double max_base;
+    double max_side;
+    double max_angle;
+
+public:
+    parallelogram(double b, double s, double angl, double max_b, double max_s, double max_angl) {
+        base = b;
+        side = s;
+        angle = angl;
+        max_base = max_b;
+        max_side = max_s;
+        max_angle = max_angl;
+    }
+
+    double getperimeter() {
+        return 2 * (base + side);
+    }
+
+    double getploshad() {
+        double angleInRadians = angle * M_PI / 180.0; // Перевод угла из градусов в радианы
+
+        return base * side * sin(angleInRadians);
+    }
+
+    double getangle() {
+        double angle2 = angle;
+        return 180 - angle2;
+    }
+
+    double getdiagonal1() {
+        double angleInRadians = angle * M_PI / 180.0; // Перевод угла из градусов в радианы
+        return sqrt(pow(base, 2) + pow(side, 2) + 2 * base * side * cos(angleInRadians));
+
+    }
+    double getdiagonal2() {
+        double angleInRadians = angle * M_PI / 180.0; // Перевод угла из градусов в радианы
+        return sqrt(pow(base, 2) + pow(side, 2) - 2 * base * side * cos(angleInRadians));
+    }
+
+
+    bool isValid() {
+
+        return ((base > 0 && base <= max_base) && (side > 0 && side <= max_side) && (angle > 0 && angle <= max_angle));
+    }
+};
+
+class pramougolnik {
+
+private:
+
+    double width;
+    double height;
+    double maxWidth;
+    double maxHeight;
+
+public:
+    pramougolnik(double w, double h, double maxW, double maxH) {
+        width = w;
+        height = h;
+        maxWidth = maxW;
+        maxHeight = maxH;
+    }
+
+    double getPerimeter() {
+        return 2 * (width + height);
+    }
+
+    double getploshad() {
+        return width * height;
+    }
+
+    double getdiagonal() {
+        return sqrt(pow(width, 2) + pow(height, 2));
+    }
+
+    bool isValid() {
+        return (width > 0 && width <= maxWidth) && (height > 0 && height <= maxHeight);
+    }
+};
+class circle {
+private:
+    double radius;
+    double maxRadius;
+public:
+    circle(double r, double maxR) {
+        radius = r;
+        maxRadius = maxR;
+    }
+    double getPerimeter() {
+        return 2 * M_PI * radius;
+    }
+    double getploshad() {
+        return M_PI * radius * radius;
+    }
+    double getdiametr() {
+        return 2 * radius;
+    }
+    bool isValid() {
+        return (radius > 0 && radius <= maxRadius);
+    }
+};
