@@ -101,7 +101,7 @@ void Parallelogram()
     case 4: {
         double angle2 = parallelogram.getangle();
         cout << "Углы прилежащие к одной стороне" << endl;
-        cout << "Угол 1: " << angle << "\n" << "Угол 2: " << angle2;
+        cout << "Угол 1: " << angle << "\n" << "Угол 2: " << angle2 << endl;
         break;
     }
     default:
