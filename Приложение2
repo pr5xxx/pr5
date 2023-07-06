@@ -1,0 +1,253 @@
+#include <iostream>
+#include <cmath>
+#include "Header.h"
+#include <algorithm>
+#include <Windows.h>
+
+using namespace std;
+void menu();
+void Parallelogram();
+void oval();
+void Pramougolnik();
+void Circle();
+
+
+
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+
+    char n = ' ';
+    while (n != '7')
+    {
+        menu();
+        cin >> n;
+        switch (n)
+        {
+        case '1': Parallelogram(); break;
+        case '2': oval(); break;
+        case '3': Pramougolnik(); break;
+        case '4': Circle(); break;
+        case '7': break;
+        default: cout << "Неверный вариант выбора" << endl;
+        }
+    }
+}
+
+
+void menu()
+{
+    cout << "Выберите с какой фигурой хотите работать:\n";
+    cout << "1. Параллелограм\n";
+    cout << "2. Овал\n";
+    cout << "3. Прямоугольник\n";
+    cout << "4. Круг\n";
+    cout << "7. Отмена\n";
+    cout << "Ваш выбор: ";
+}
+
+void Parallelogram()
+{
+    double base, side, angle;
+    int choice;
+    const double MAX_BASE = 50.0;
+    const double MAX_SIDE = 50.0;
+    const double MAX_ANGLE = 90.0;
+
+    setlocale(LC_ALL, "Russian");
+
+    cout << "Введите основание параллелограмма: ";
+    cin >> base;
+
+    cout << "Введите боковую сторону параллелограмма: ";
+    cin >> side;
+
+    cout << "Введите угол между основанием и боковой стороной (в градусах): ";
+    cin >> angle;
+
+    parallelogram parallelogram(base, side, angle, MAX_BASE, MAX_SIDE, MAX_ANGLE);
+
+    if (!parallelogram.isValid()) {
+        cout << "Размеры основания и/или боковой стороны и/или угла некорректны." << endl;
+        return ;
+    }
+
+    cout << "Выберите, что нужно посчитать:\n";
+    cout << "1. Периметр\n";
+    cout << "2. Площадь\n";
+    cout << "3. Диагональ\n";
+    cout << "4. Углы\n";
+    cout << "Ваш выбор: ";
+    cin >> choice;
+
+    switch (choice) {
+    case 1: {
+        double perimeter = parallelogram.getperimeter();
+        cout << "Периметр паралелограмма: " << perimeter << endl;
+        break;
+    }
+    case 2: {
+        double ploshad = parallelogram.getploshad();
+        cout << "Площадь паралелограмма: " << ploshad << endl;
+        break;
+    }
+    case 3: {
+        double diagonal1 = parallelogram.getdiagonal1();
+        double diagonal2 = parallelogram.getdiagonal2();
+        cout << "Диагональ паралелограмма 1: " << diagonal1 << "\n" << "Диагональ паралелограмма 2: " << diagonal2 << endl;
+        break;
+    }
+    case 4: {
+        double angle2 = parallelogram.getangle();
+        cout << "Углы прилежащие к одной стороне" << endl;
+        cout << "Угол 1: " << angle << "\n" << "Угол 2: " << angle2;
+        break;
+    }
+    default:
+        cout << "Неправильный выбор." << endl;
+    }
+
+    return ;
+}
+
+void oval()
+{
+    double width, height;
+    int choice;
+    const double MAX_WIDTH = 1000.0;
+    const double MAX_HEIGHT = 1000.0;
+
+    setlocale(LC_ALL, "Russian");
+
+    cout << "Введите ширину овала: ";
+    cin >> width;
+
+    cout << "Введите высоту овала: ";
+    cin >> height;
+
+    Oval Oval(width, height, MAX_WIDTH, MAX_HEIGHT);
+
+    if (!Oval.isValid()) {
+        cout << "Размеры высоты и/или ширины некорректны." << endl;
+        return;
+    }
+
+    cout << "Выберите, что нужно посчитать:\n";
+    cout << "1. Периметр\n";
+    cout << "2. Площадь\n";
+    cout << "Ваш выбор: ";
+    cin >> choice;
+
+    switch (choice) {
+    case 1: {
+        double perimeter = Oval.getPerimeter();
+        cout << "Периметр овала: " << perimeter << endl;
+        break;
+    }
+    case 2: {
+        double ploshad = Oval.getPloshad();
+        cout << "Площадь овала: " << ploshad << endl;
+        break;
+    }
+
+    default:
+        cout << "Неправильный выбор." << endl;
+    }
+
+    return;
+
+}
+void Pramougolnik()
+{
+    double width, height;
+    int choice;
+    const double MAX_WIDTH = 1000.0;
+    const double MAX_HEIGHT = 1000.0;
+
+    setlocale(LC_ALL, "Russian");
+
+    cout << "Ââĺäčňĺ řčđčíó ďđ˙ěîóăîëüíčęŕ: ";
+    cin >> width;
+
+    cout << "Ââĺäčňĺ âűńîňó ďđ˙ěîóăîëüíčęŕ: ";
+    cin >> height;
+
+    pramougolnik pramougolnik(width, height, MAX_WIDTH, MAX_HEIGHT);
+
+    if (!pramougolnik.isValid()) {
+        cout << "Đŕçěĺđű âűńîňű č/čëč řčđčíű íĺęîđđĺęňíű." << endl;
+        return;
+    }
+
+    cout << "Âűáĺđčňĺ, ÷ňî íóćíî ďîń÷čňŕňü:\n";
+    cout << "1. Ďĺđčěĺňđ\n";
+    cout << "2. Ďëîůŕäü\n";
+    cout << "3. Äčŕăîíŕëü\n";
+    cout << "Âŕř âűáîđ: ";
+    cin >> choice;
+
+    switch (choice) {
+    case 1: {
+        double perimeter = pramougolnik.getPerimeter();
+        cout << "Ďĺđčěĺňđ ďđ˙ěîóăîëüíčęŕ: " << perimeter << endl;
+        break;
+    }
+    case 2: {
+        double ploshad = pramougolnik.getploshad();
+        cout << "Ďëîůŕäü ďđ˙ěîóăîëüíčęŕ: " << ploshad << endl;
+        break;
+    }
+    case 3: {
+        double diagonal = pramougolnik.getdiagonal();
+        cout << "Äčŕăîíŕëü ďđ˙ěîóăîëüíčęŕ: " << diagonal << endl;
+        break;
+    }
+    default:
+        cout << "Íĺďđŕâčëüíűé âűáîđ." << endl;
+    }
+
+    return;
+}
+
+void Circle()
+{
+    double radius;
+    int choice;
+    const double MAX_RADIUS = 1000.0;
+    setlocale(LC_ALL, "Russian");
+    cout << "Введите радиус окружности: ";
+    cin >> radius;
+    circle  circle(radius, MAX_RADIUS);
+    if (!circle.isValid()) {
+        cout << "Размеры высоты и/или ширины некорректны." << endl;
+        return;
+    }
+    cout << "Выберите, что нужно посчитать:\n";
+    cout << "1. Периметр\n";
+    cout << "2. Площадь\n";
+    cout << "3. Диаметр\n";
+    cout << "Ваш выбор: ";
+    cin >> choice;
+    switch (choice) {
+    case 1: {
+        double perimeter = circle.getPerimeter();
+        cout << "Периметр окружности: " << perimeter << endl;
+        break;
+    }
+    case 2: {
+        double ploshad = circle.getploshad();
+        cout << "Площадь окружности: " << ploshad << endl;
+        break;
+    }
+    case 3: {
+        double diametr = circle.getdiametr();
+        cout << "Диаметр окружности: " << diametr << endl;
+        break;
+    }
+    default:
+        cout << "Неправильный выбор." << endl;
+    }
+    return;
+}
+
