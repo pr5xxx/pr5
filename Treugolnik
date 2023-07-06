@@ -1,0 +1,126 @@
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+
+//Если в результате компиляции выдается результат nan на одной из переменных - значит переменная является неопределенным значением (отрицательное или делённое на 0)
+class Triangle {
+private:
+    double sideA, sideB, sideC;
+public:
+    Triangle(double a, double b, double c);
+    double getSideA() const;
+    double getSideB() const;
+    double getSideC() const;
+    double getPerimeter() const;
+    double getArea() const;
+    double getAngleA() const;
+    double getAngleB() const;
+    double getAngleC() const;
+    bool isRight() const; // Right - Прямоугольный
+    bool isAcute() const; // Acute - Остроугольный
+    bool isObtuse() const; // Obtuse - Тупоугольный
+    bool isIsosceles() const; // Isosceles - Равнобедренный
+    bool isEquilateral() const; // Equilateral - Равносторонний
+};
+
+Triangle::Triangle(double a, double b, double c) {
+    sideA = a;
+    sideB = b;
+    sideC = c;
+}
+
+double Triangle::getSideA() const {
+    return sideA;
+}
+
+double Triangle::getSideB() const {
+    return sideB;
+}
+
+double Triangle::getSideC() const {
+    return sideC;
+}
+
+double Triangle::getPerimeter() const {
+    return sideA + sideB + sideC;
+}
+
+double Triangle::getArea() const {
+    double p = (sideA + sideB + sideC) / 2;
+    return sqrt(p * (p - sideA) * (p - sideB) * (p - sideC));
+}
+
+double Triangle::getAngleA() const {
+    return acos((sideB * sideB + sideC * sideC - sideA * sideA) / (2 * sideB * sideC));
+}
+
+double Triangle::getAngleB() const {
+    return acos((sideA * sideA + sideC * sideC - sideB * sideB) / (2 * sideA * sideC));
+}
+
+double Triangle::getAngleC() const {
+    return acos((sideA * sideA + sideB * sideB - sideC * sideC) / (2 * sideA * sideB));
+}
+
+bool Triangle::isRight() const {
+    double sides[3] = {sideA, sideB, sideC};
+    std::sort(sides, sides + 3);
+    return std::abs(sides[2] * sides[2] - (sides[0] * sides[0] + sides[1] * sides[1])) < 1e-10;
+}
+
+bool Triangle::isAcute() const {
+    double sides[3] = {sideA, sideB, sideC};
+    std::sort(sides, sides + 3);
+    return sides[2] * sides[2] < sides[0] * sides[0] + sides[1] * sides[1];
+}
+
+bool Triangle::isObtuse() const {
+    double sides[3] = {sideA, sideB, sideC};
+    std::sort(sides, sides + 3);
+    return sides[2] * sides[2] > sides[0] * sides[0] + sides[1] * sides[1];
+}
+
+bool Triangle::isIsosceles() const {
+    return sideA == sideB || sideB == sideC || sideC == sideA;
+}
+
+bool Triangle::isEquilateral() const {
+    return sideA == sideB && sideB == sideC;
+}
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    double a, b, c;
+    std::cout << "Введите длины сторон треугольника: ";
+    std::cin >> a >> b >> c;
+
+    Triangle t(a, b, c);
+
+    std::cout << "Сторона a: " << t.getSideA() << std::endl;
+    std::cout << "Сторона b: " << t.getSideB() << std::endl;
+    std::cout << "Сторона c: " << t.getSideC() << std::endl;
+    std::cout << "Периметр: " << t.getPerimeter() << std::endl;
+    std::cout << "Площадь: " << t.getArea() << std::endl;
+
+    if (t.isEquilateral()) {
+    std::cout << "Треугольник равносторонний" << std::endl;
+    } else if (t.isIsosceles()) {
+    std::cout << "Треугольник равнобедренный" << std::endl;
+    } else {
+    std::cout << "Треугольник разносторонний" << std::endl;
+    }
+
+    if (t.isRight()) {
+        std::cout << "Треугольник прямоугольный" << std::endl;
+    } else if (t.isAcute()) {
+        std::cout << "Треугольник остроугольный" << std::endl;
+    } else if (t.isObtuse()) {
+        std::cout << "Треугольник тупоугольный" << std::endl;
+    }
+
+    std::cout << "Угол A: " << t.getAngleA() * 180 / M_PI << " градусов" << std::endl;
+    std::cout << "Угол B: " << t.getAngleB() * 180 / M_PI << " градусов" << std::endl;
+    std::cout << "Угол C: " << t.getAngleC() * 180 / M_PI << " градусов" << std::endl;
+
+    return 0;
+}
