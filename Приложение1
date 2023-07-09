@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <algorithm>
 #define M_PI 3.14159265358979323846
 
 using namespace std;
@@ -137,8 +138,91 @@ public:
         return (radius > 0 && radius <= maxRadius);
     }
 };
+class Triangle {
+private:
+    double sideA, sideB, sideC;
+public:
+    Triangle(double a, double b, double c);
+    double getSideA() const;
+    double getSideB() const;
+    double getSideC() const;
+    double getPerimeter() const;
+    double getArea() const;
+    double getAngleA() const;
+    double getAngleB() const;
+    double getAngleC() const;
+    bool isRight() const; // Right - Прямоугольный
+    bool isAcute() const; // Acute - Остроугольный
+    bool isObtuse() const; // Obtuse - Тупоугольный
+    bool isIsosceles() const; // Isosceles - Равнобедренный
+    bool isEquilateral() const; // Equilateral - Равносторонний
+};
 
-class trapeze {
+Triangle::Triangle(double a, double b, double c) {
+    sideA = a;
+    sideB = b;
+    sideC = c;
+}
+
+double Triangle::getSideA() const {
+    return sideA;
+}
+
+double Triangle::getSideB() const {
+    return sideB;
+}
+
+double Triangle::getSideC() const {
+    return sideC;
+}
+
+double Triangle::getPerimeter() const {
+    return sideA + sideB + sideC;
+}
+
+double Triangle::getArea() const {
+    double p = (sideA + sideB + sideC) / 2;
+    return sqrt(p * (p - sideA) * (p - sideB) * (p - sideC));
+}
+
+double Triangle::getAngleA() const {
+    return acos((sideB * sideB + sideC * sideC - sideA * sideA) / (2 * sideB * sideC));
+}
+
+double Triangle::getAngleB() const {
+    return acos((sideA * sideA + sideC * sideC - sideB * sideB) / (2 * sideA * sideC));
+}
+
+double Triangle::getAngleC() const {
+    return acos((sideA * sideA + sideB * sideB - sideC * sideC) / (2 * sideA * sideB));
+}
+
+bool Triangle::isRight() const {
+    double sides[3] = { sideA, sideB, sideC };
+    std::sort(sides, sides + 3);
+    return std::abs(sides[2] * sides[2] - (sides[0] * sides[0] + sides[1] * sides[1])) < 1e-10;
+}
+
+bool Triangle::isAcute() const {
+    double sides[3] = { sideA, sideB, sideC };
+    std::sort(sides, sides + 3);
+    return sides[2] * sides[2] < sides[0] * sides[0] + sides[1] * sides[1];
+}
+
+bool Triangle::isObtuse() const {
+    double sides[3] = { sideA, sideB, sideC };
+    std::sort(sides, sides + 3);
+    return sides[2] * sides[2] > sides[0] * sides[0] + sides[1] * sides[1];
+}
+
+bool Triangle::isIsosceles() const {
+    return sideA == sideB || sideB == sideC || sideC == sideA;
+}
+
+bool Triangle::isEquilateral() const {
+    return sideA == sideB && sideB == sideC;
+}
+class Trapeze {
 private:
     double Top_base;
     double Bottom_base;
@@ -160,7 +244,7 @@ private:
     double maxCorner4;
 
 public:
-    trapeze(double Tb, double Bb, double S1, double S2, double H, double maxTb, double maxBb, double maxS1, double maxS2, double maxH,
+    Trapeze(double Tb, double Bb, double S1, double S2, double H, double maxTb, double maxBb, double maxS1, double maxS2, double maxH,
         double C1, double C2, double C3, double C4, double maxC1, double maxC2, double maxC3, double maxC4)
     {
         Top_base = Tb;
@@ -225,4 +309,5 @@ public:
         return (Corner1 > 0 && Corner1 <= maxCorner1) && (Corner2 > 0 && Corner2 <= maxCorner2)
             && (Corner3 > 0 && Corner3 <= maxCorner3) && (Corner4 > 0 && Corner4 <= maxCorner4);
     }
+
 };
