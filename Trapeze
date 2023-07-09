@@ -136,12 +136,36 @@ int main() {
     Height = - Side1 * sin(Corner1);
     cout << "Высота трапеции: " << Height << endl << endl;;
 
-    if (Corner1 == 90)
-    {
-        cout << "Прямоугольная трапеция" << endl << endl;
-    }
+     if (Corner1 + Corner2 > 180)
+     {
+         cout << "Такого не может быть" << endl << endl;
+         exit(0);
+     }
 
-     if ((Side1 == Side2)&&(Corner1 == Corner4))
+     if (Corner3 + Corner4 > 180)
+     {
+         cout << "Такого не может быть" << endl << endl;
+         exit(0);
+     }
+
+     if (Corner1 + Corner2 < 180)
+     {
+         cout << "Такого не может быть" << endl << endl;
+         exit(0);
+     }
+
+     if (Corner3 + Corner4 < 180)
+     {
+         cout << "Такого не может быть" << endl << endl;
+         exit(0);
+     }
+
+     if (Corner1 == 90 || Corner2 == 90 || Corner3 == 90 || Corner4 == 90)
+     {
+         cout << "Прямоугольная трапеция" << endl << endl;
+     }
+
+     if ((Side1 == Side2) && (Corner1 == Corner4))
      {
          cout << "Равнобедренная трапеция" << endl << endl;
      }
