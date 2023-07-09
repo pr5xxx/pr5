@@ -2,6 +2,7 @@
 #include <cmath>
 #include <algorithm>
 #include <stdexcept>
+using namespace std;
 
 //Если в результате компиляции выдается переменная равна nan - значит она является неопределенным значением (отрицательное или делённое на 0)
 class Triangle {
@@ -26,7 +27,7 @@ public:
 
 Triangle::Triangle(double a, double b, double c) {
     if (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a) {
-        throw std::invalid_argument("Треугольник с указанными сторонами не существует");
+        throw invalid_argument("Треугольник с указанными сторонами не существует");
     }
     sideA = a;
     sideB = b;
@@ -68,19 +69,19 @@ double Triangle::getAngleC() const {
 
 bool Triangle::isRight() const {
     double sides[3] = {sideA, sideB, sideC};
-    std::sort(sides, sides + 3);
-    return std::abs(sides[2] * sides[2] - (sides[0] * sides[0] + sides[1] * sides[1])) < 1e-10;
+    sort(sides, sides + 3);
+    return abs(sides[2] * sides[2] - (sides[0] * sides[0] + sides[1] * sides[1])) < 1e-10;
 }
 
 bool Triangle::isAcute() const {
     double sides[3] = {sideA, sideB, sideC};
-    std::sort(sides, sides + 3);
+    sort(sides, sides + 3);
     return sides[2] * sides[2] < sides[0] * sides[0] + sides[1] * sides[1];
 }
 
 bool Triangle::isObtuse() const {
     double sides[3] = {sideA, sideB, sideC};
-    std::sort(sides, sides + 3);
+    sort(sides, sides + 3);
     return sides[2] * sides[2] > sides[0] * sides[0] + sides[1] * sides[1];
 }
 
@@ -95,38 +96,38 @@ bool Triangle::isEquilateral() const {
 int main() {
     setlocale(LC_ALL, "Russian");
     double a, b, c;
-    std::cout << "Введите длины сторон треугольника: ";
-    std::cin >> a >> b >> c;
+    cout << "Введите длины сторон треугольника: ";
+    cin >> a >> b >> c;
 
     try {
         Triangle t(a, b, c);
 
-        std::cout << "Сторона a: " << t.getSideA() << std::endl;
-        std::cout << "Сторона b: " << t.getSideB() << std::endl;
-        std::cout << "Сторона c: " << t.getSideC() << std::endl;
-        std::cout << "Периметр: " << t.getPerimeter() << std::endl;
-        std::cout << "Площадь: " << t.getArea() << std::endl;
-        std::cout << "Угол A: " << t.getAngleA() << std::endl;
-        std::cout << "Угол B: " << t.getAngleB() << std::endl;
-        std::cout << "Угол C: " << t.getAngleC() << std::endl;
+        cout << "Сторона a: " << t.getSideA() << endl;
+        cout << "Сторона b: " << t.getSideB() << endl;
+        cout << "Сторона c: " << t.getSideC() << endl;
+        cout << "Периметр: " << t.getPerimeter() << endl;
+        cout << "Площадь: " << t.getArea() << endl;
+        cout << "Угол A: " << t.getAngleA() << endl;
+        cout << "Угол B: " << t.getAngleB() << endl;
+        cout << "Угол C: " << t.getAngleC() << endl;
 
         if (t.isRight()) {
-            std::cout << "Треугольник прямоугольный" << std::endl;
+            cout << "Треугольник прямоугольный" << endl;
         } else if (t.isAcute()) {
-            std::cout << "Треугольник остроугольный" << std::endl;
+            cout << "Треугольник остроугольный" << endl;
         } else if (t.isObtuse()) {
-            std::cout << "Треугольник тупоугольный" << std::endl;
+            cout << "Треугольник тупоугольный" << endl;
         }
 
         if (t.isIsosceles()) {
-            std::cout << "Треугольник равнобедренный" << std::endl;
+            cout << "Треугольник равнобедренный" << endl;
         }
 
         if (t.isEquilateral()) {
-            std::cout << "Треугольник равносторонний" << std::endl;
+            cout << "Треугольник равносторонний" << endl;
         }
-    } catch (std::invalid_argument& e) {
-        std::cout << "Ошибка: " << e.what() << std::endl;
+    } catch (invalid_argument& e) {
+        cout << "Ошибка: " << e.what() << endl;
     }
 
     return 0;
