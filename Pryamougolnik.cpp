@@ -46,44 +46,44 @@ int main() {
 
     setlocale(LC_ALL, "Russian");
 
-    cout << "Ââĺäčňĺ řčđčíó ďđ˙ěîóăîëüíčęŕ: ";
+    cout << "Введите ширину прямоугольника: ";
     cin >> width;
 
-    cout << "Ââĺäčňĺ âűńîňó ďđ˙ěîóăîëüíčęŕ: ";
+    cout << "Введите высоту прямоугольника: ";
     cin >> height;
 
     pramougolnik pramougolnik(width, height, MAX_WIDTH, MAX_HEIGHT);
 
     if (!pramougolnik.isValid()) {
-        cout << "Đŕçěĺđű âűńîňű č/čëč řčđčíű íĺęîđđĺęňíű." << endl;
+        cout << "Размеры высоты и/или ширины некорректны." << endl;
         return 0;
     }
 
-    cout << "Âűáĺđčňĺ, ÷ňî íóćíî ďîń÷čňŕňü:\n";
-    cout << "1. Ďĺđčěĺňđ\n";
-    cout << "2. Ďëîůŕäü\n";
-    cout << "3. Äčŕăîíŕëü\n";
-    cout << "Âŕř âűáîđ: ";
+    cout << "Выберите, что нужно посчитать:\n";
+    cout << "1. Периметр\n";
+    cout << "2. Площадь\n";
+    cout << "3. Диагональ\n";
+    cout << "Ваш выбор: ";
     cin >> choice;
 
     switch (choice) {
         case 1: {
             double perimeter = pramougolnik.getPerimeter();
-            cout << "Ďĺđčěĺňđ ďđ˙ěîóăîëüíčęŕ: " << perimeter << endl;
+            cout << "Периметр прямоугольника: " << perimeter << endl;
             break;
         }
         case 2: {
             double ploshad = pramougolnik.getploshad();
-            cout << "Ďëîůŕäü ďđ˙ěîóăîëüíčęŕ: " << ploshad << endl;
+            cout << "Площадь прямоугольника: " << ploshad << endl;
             break;
         }
         case 3: {
             double diagonal = pramougolnik.getdiagonal();
-            cout << "Äčŕăîíŕëü ďđ˙ěîóăîëüíčęŕ: " << diagonal << endl;
+            cout << "Диагональ прямоугольника: " << diagonal << endl;
             break;
         }
         default:
-            cout << "Íĺďđŕâčëüíűé âűáîđ." << endl;
+            cout << "Неправильный выбор." << endl;
     }
 
     return 0;
