@@ -300,7 +300,7 @@ void triangle()
 
 void trapeze()
 {
-    double Top_base, Bottom_base, Side1, Side2, Height;
+   double Top_base, Bottom_base, Side1, Side2, Height;
     double Corner1, Corner2, Corner3, Corner4;
     int choice;
     const double MAX_Top_base = 1000.0;
@@ -339,37 +339,61 @@ void trapeze()
     cout << "Введите угол 4 трапеции: ";
     cin >> Corner4;
 
-    Height = -Side1 * sin(Corner1);
+    Height = - Side1 * sin(Corner1);
     cout << "Высота трапеции: " << Height << endl << endl;;
 
-    if (Corner1 == 90)
-    {
-        cout << "Прямоугольная трапеция" << endl << endl;
-    }
+     if (Corner1 + Corner2 > 180)
+     {
+         cout << "Такого не может быть" << endl << endl;
+         exit(0);
+     }
 
-    if ((Side1 == Side2) && (Corner1 == Corner4))
-    {
-        cout << "Равнобедренная трапеция" << endl << endl;
-    }
-    else
-    {
-        cout << "Такого не может быть" << endl << endl;
-        return;
-    }
+     if (Corner3 + Corner4 > 180)
+     {
+         cout << "Такого не может быть" << endl << endl;
+         exit(0);
+     }
+
+     if (Corner1 + Corner2 < 180)
+     {
+         cout << "Такого не может быть" << endl << endl;
+         exit(0);
+     }
+
+     if (Corner3 + Corner4 < 180)
+     {
+         cout << "Такого не может быть" << endl << endl;
+         exit(0);
+     }
+
+     if (Corner1 == 90 || Corner2 == 90 || Corner3 == 90 || Corner4 == 90)
+     {
+         cout << "Прямоугольная трапеция" << endl << endl;
+     }
+
+     if ((Side1 == Side2) && (Corner1 == Corner4))
+     {
+         cout << "Равнобедренная трапеция" << endl << endl;
+     }
+     else
+     {
+         cout << "Такого не может быть" << endl << endl;
+         exit(0);
+     }
 
     Trapeze Trapeze(Top_base, Bottom_base, Side1, Side2, Height, MAX_Top_base, MAX_Bottom_base, MAX_Side1, MAX_Side2, MAX_Height,
         Corner1, Corner2, Corner3, Corner4, MAX_Corner1, MAX_Corner2, MAX_Corner3, MAX_Corner4);
 
-    if (!Trapeze.isValid())
+    if (!Trapeze.isValid()) 
     {
         cout << "Размеры верхней/нижней и/или боковые стороны некорректны." << endl;
-        return;
+        return 0;
     }
 
     if (!Trapeze.Valid())
     {
         cout << "Размеры углов некорректны." << endl;
-        return;
+        return 0;
     }
     cout << "Выберите, что нужно посчитать:\n";
     cout << "1. Периметр\n";
@@ -383,12 +407,12 @@ void trapeze()
     case 1: {
         double perimeter = Trapeze.getPerimeter();
         cout << "Периметр трапеции: " << perimeter << endl;
-        return;
+        break;
     }
     case 2: {
         double ploshad = Trapeze.getPloshad();
         cout << "Площадь трапеции: " << ploshad << endl;
-        return;
+        break;
     }
     case 3: {
         double Corner2 = Trapeze.getCorner1();
@@ -396,7 +420,7 @@ void trapeze()
         cout << endl;
         cout << "Углы трапеции:" << endl;
         cout << "Угол 1: " << Corner1 << "\n" << "Угол 2: " << Corner2 << "\n" << "Угол 3: " << Corner3 << "\n" << "Угол 4: " << Corner4 << endl;;
-        return;
+        break;
     }
     case 4: {
         double storony = Trapeze.getSide();
@@ -405,11 +429,12 @@ void trapeze()
         cout << "Нижнее основание трапеции: " << Bottom_base << endl;
         cout << "Боковая сторона 1 трапеции: " << Side1 << endl;
         cout << "Боковая сторона 2 трапеции: " << Side2 << endl;
-        return;
+        break;
     }
     default:
         cout << "Неправильный выбор." << endl;
     }
 
-    return;
+    return 0;
+}
 }
