@@ -137,3 +137,92 @@ public:
         return (radius > 0 && radius <= maxRadius);
     }
 };
+
+class trapeze {
+private:
+    double Top_base;
+    double Bottom_base;
+    double Side1;
+    double Side2;
+    double Height;
+    double maxTop_base;
+    double maxBottom_base;
+    double maxSide1;
+    double maxSide2;
+    double maxHeight;
+    double Corner1;
+    double Corner2;
+    double Corner3;
+    double Corner4;
+    double maxCorner1;
+    double maxCorner2;
+    double maxCorner3;
+    double maxCorner4;
+
+public:
+    trapeze(double Tb, double Bb, double S1, double S2, double H, double maxTb, double maxBb, double maxS1, double maxS2, double maxH,
+        double C1, double C2, double C3, double C4, double maxC1, double maxC2, double maxC3, double maxC4)
+    {
+        Top_base = Tb;
+        Bottom_base = Bb;
+        Side1 = S1;
+        Side2 = S2;
+        Height = H;
+        maxTop_base = maxTb;
+        maxBottom_base = maxBb;
+        maxSide1 = maxS1;
+        maxSide2 = maxS2;
+        maxHeight = maxH;
+
+        Corner1 = C1;
+        Corner2 = C2;
+        Corner3 = C3;
+        Corner4 = C4;
+        maxCorner1 = maxC1;
+        maxCorner2 = maxC2;
+        maxCorner3 = maxC3;
+        maxCorner4 = maxC4;
+    }
+
+    double getPerimeter()
+    {
+        return (Top_base + Bottom_base + Side1 + Side2);
+    }
+
+    double getPloshad()
+    {
+        return (Top_base + Bottom_base) * Height / 2;
+    }
+
+    double getCorner1()
+    {
+        double Corner2 = Corner1;
+        return 180 - Corner2;
+    }
+
+    double getCorner2()
+    {
+        double Corner4 = Corner3;
+        return 180 - Corner4;
+    }
+
+    double getSide()
+    {
+        return Side1;
+        return Side2;
+        return Top_base;
+        return Bottom_base;
+    }
+
+    bool isValid()
+    {
+        return (Top_base > 0 && Top_base <= maxTop_base) && (Bottom_base > 0 && Bottom_base <= maxBottom_base) &&
+            (Side1 > 0 && Side1 <= maxSide1) && (Side2 > 0 && Side2 <= maxSide2);
+    }
+
+    bool Valid()
+    {
+        return (Corner1 > 0 && Corner1 <= maxCorner1) && (Corner2 > 0 && Corner2 <= maxCorner2)
+            && (Corner3 > 0 && Corner3 <= maxCorner3) && (Corner4 > 0 && Corner4 <= maxCorner4);
+    }
+};
