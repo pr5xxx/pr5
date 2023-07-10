@@ -176,13 +176,13 @@ void Pramougolnik()
     cout << "Введите ширину прямоугольника: ";
     cin >> width;
 
-    cout << "Введите высоту прямоугольника: ";
+    cout << "Введите длину прямоугольника: ";
     cin >> height;
 
     pramougolnik pramougolnik(width, height, MAX_WIDTH, MAX_HEIGHT);
 
     if (!pramougolnik.isValid()) {
-        cout << "Размеры высоты и/или ширины некорректны." << endl;
+        cout << "Размеры длины и/или ширины некорректны." << endl;
         return 0;
     }
 
